@@ -110,3 +110,37 @@ footer {
   background-color: #004aad;
   color: white;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.login-form label {
+  text-align: left;
+  font-weight: bold;
+  color: #004aad;
+}
+
+.login-form input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.message {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.message.success {
+  color: green;
+}
+
+.message.error {
+  color: red;
+}
