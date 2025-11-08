@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus — Kursevi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">EduPlus</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="kursevi2.html" class="active">Kursevi</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Dostupni kursevi</h2>
+      <p>Dobrodošli na stranicu kurseva! Ovde možete pregledati sve dostupne lekcije i oblasti.</p>
+    </section>
+
+    <section class="courses">
+      <div class="course-card">
+        <h3>Web dizajn</h3>
+        <p>Naučite kako da kreirate moderne i responzivne sajtove.</p>
+      </div>
+
+      <div class="course-card">
+        <h3>Programiranje u JavaScript-u</h3>
+        <p>Osnove JS-a, DOM manipulacija i interaktivne aplikacije.</p>
+      </div>
+
+      <div class="course-card">
+        <h3>Baze podataka</h3>
+        <p>Upoznajte SQL i kako se podaci čuvaju i povezuju u realnim projektima.</p>
+      </div>
+    </section>
+
+    <button id="logoutBtn" class="btn">Odjavi se</button>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> EduPlus — Online Kursevi</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("loggedUser");
+        window.location.href = "index.html";
+      });
+    }
+  </script>
+</body>
+</html>
