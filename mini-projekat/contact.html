@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduPlus — Kontakt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ 
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">EduPlus</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="login.html">Kursevi</a></li>
+        <li><a href="contact.html" class="active">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Kontaktiraj nas</h2>
+      <p>Imate pitanje u vezi kurseva, naloga ili saradnje? Pišite nam — odgovor stiže uskoro.</p>
+    </section>
+
+    <section class="contact-grid">
+      <article class="contact-card">
+        <h3>Kontakt informacije</h3>
+        <ul class="contact-info">
+          <li><strong>Adresa:</strong> Bulevar Edukacije 1, Beograd</li>
+          <li><strong>Email:</strong> support@eduplus.com</li>
+          <li><strong>Telefon:</strong> +381 11 555 333</li>
+          <li><strong>Radno vreme:</strong> Pon–Pet 09–17h</li>
+        </ul>
+      </article>
+
+      <article class="contact-card">
+        <h3>Pošaljite poruku</h3>
+        <form id="contactForm" class="contact-form" novalidate>
+          <label for="cName">Ime i prezime</label>
+          <input type="text" id="cName" name="name" placeholder="Vaše ime" required>
+
+          <label for="cEmail">Email</label>
+          <input type="email" id="cEmail" name="email" placeholder="primer@mail.com" required>
+
+          <label for="cMsg">Poruka</label>
+          <textarea id="cMsg" name="message" rows="4" placeholder="Napišite poruku..." minlength="10" required></textarea>
+
+          <button type="submit" class="btn">Pošalji</button>
+          <p id="cMessage" class="message" aria-live="polite"></p>
+        </form>
+      </article>
+    </section>
+  </main>
+
+
+  <footer>
+    <p>© <span id="year"></span> EduPlus — Online Kursevi</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
