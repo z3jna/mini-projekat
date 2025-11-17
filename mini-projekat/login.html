@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 
   <header>
     <nav class="navbar">
@@ -21,20 +20,39 @@
     </nav>
   </header>
 
- 
   <main class="container">
     <section class="hero">
       <h2>Prijava na EduPlus</h2>
-      <form id="loginForm" class="login-form">
+
+      
+      <form action="auth.php" method="get" class="login-form">
         <label for="email">Email adresa:</label>
-        <input type="email" id="email" placeholder="Unesite email" required>
+        <input type="email" id="email" name="email" placeholder="Unesite email" required>
 
         <label for="password">Lozinka:</label>
-        <input type="password" id="password" placeholder="Unesite lozinku" required>
+        <input type="password" id="password" name="password" placeholder="Unesite lozinku" required>
 
         <button type="submit" class="btn">Uloguj se</button>
-        <p id="loginMessage" class="message"></p>
       </form>
+
+      <hr style="margin: 2rem 0; opacity: 0.3;">
+
+      
+      <h2>Registracija</h2>
+      <form action="auth.php" method="post" class="login-form">
+
+        <label>Ime i prezime:</label>
+        <input type="text" name="ime" placeholder="Unesite ime" required>
+
+        <label>Indeks (broj):</label>
+        <input type="text" name="indeks" placeholder="Unesite indeks" required>
+
+        <label>Godine (broj):</label>
+        <input type="text" name="godine" placeholder="Unesite godine" required>
+
+        <button type="submit" class="btn">Registruj se</button>
+      </form>
+
     </section>
   </main>
 
