@@ -1,14 +1,34 @@
 
 const year = document.getElementById("year");
-if (year) year.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
 
-let users = JSON.parse(localStorage.getItem("users")) || [
-  { email: "student@eduplus.com", password: "12345" },
+const defaultUsers = [
+  { email: "student@eduplus.com",  password: "12345" },
   { email: "profesor@eduplus.com", password: "98765" },
-  { email: "admin@eduplus.com", password: "admin123" }
+  { email: "admin@eduplus.com",    password: "admin123" }
 ];
 
+let users = [];
+
+try {
+  const storedUsers = localStorage.getItem("users");
+  if (storedUsers) {
+    users = JSON.parse(storedUsers);
+  } else {
+    users = defaultUsers;
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+} catch (err) {
+  console.error("Greška pri čitanju korisnika iz localStorage:", err);
+  users = defaultUsers;
+}
+
+function saveUsers() {
+  localStorage.setItem("users", JSON.stringify(users));
+}
 
 
 const loginForm = document.getElementById("loginForm");
@@ -17,26 +37,45 @@ if (loginForm) {
   loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const pass = document.getElementById("password").value.trim();
-    const msg = document.getElementById("loginMessage");
+    const emailInput = document.getElementById("email");
+    const passInput = document.getElementById("password");
+    const message = document.getElementById("loginMessage");
 
-    const user = users.find(u => u.email === email && u.password === pass);
+    const email = emailInput ? emailInput.value.trim() : "";
+    const password = passInput ? passInput.value.trim() : "";
+
+    if (!email || !password) {
+      if (message) {
+        message.textContent = "❌ Unesite email i lozinku.";
+        message.className = "message error";
+      }
+      return;
+    }
+
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
 
     if (user) {
-      msg.textContent = "✅ Uspešno ste se prijavili!";
-      msg.className = "message success";
+      if (message) {
+        message.textContent = "✅ Uspešno ste se prijavili, dobrodošli!";
+        message.className = "message success";
+      }
 
+      
       localStorage.setItem("loggedUser", email);
 
-      setTimeout(() => (window.location = "kursevi2.html"), 1200);
+      setTimeout(() => {
+        window.location.href = "kursevi2.html";
+      }, 1200);
     } else {
-      msg.textContent = "❌ Pogrešan email ili lozinka!";
-      msg.className = "message error";
+      if (message) {
+        message.textContent = "❌ Pogrešan email ili lozinka!";
+        message.className = "message error";
+      }
     }
   });
 }
-
 
 
 const registerForm = document.getElementById("registerForm");
@@ -45,34 +84,58 @@ if (registerForm) {
   registerForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const email = document.getElementById("regEmail").value.trim();
-    const pass = document.getElementById("regPassword").value.trim();
-    const msg = document.getElementById("registerMessage");
+    const emailInput = document.getElementById("regEmail");
+    const passInput = document.getElementById("regPassword");
+    const message = document.getElementById("registerMessage");
 
-    const exists = users.find(u => u.email === email);
+    const email = emailInput ? emailInput.value.trim() : "";
+    const password = passInput ? passInput.value.trim() : "";
 
-    if (exists) {
-      msg.textContent = "⚠️ Ovaj email već postoji!";
-      msg.className = "message error";
+    if (!email || !password) {
+      if (message) {
+        message.textContent = "❌ Unesite email i lozinku.";
+        message.className = "message error";
+      }
       return;
     }
 
-    users.push({ email, password: pass });
-    localStorage.setItem("users", JSON.stringify(users));
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      if (message) {
+        message.textContent = "❌ Neispravan format email adrese.";
+        message.className = "message error";
+      }
+      return;
+    }
 
-    msg.textContent = "✅ Registracija uspešna!";
-    msg.className = "message success";
+    
+    const existingUser = users.find((u) => u.email === email);
 
-    setTimeout(() => (window.location = "login.html"), 1500);
+    if (existingUser) {
+      existingUser.password = password;
+    } else {
+      users.push({ email, password });
+    }
+
+    saveUsers();
+
+    if (message) {
+      message.textContent = "✅ Registracija uspešna! Možete da se ulogujete.";
+      message.className = "message success";
+    }
+
+    
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1500);
   });
 }
 
 
-
-if (window.location.pathname.includes("kursevi2.html")) {
-  const logged = localStorage.getItem("loggedUser");
-  if (!logged) {
-    alert("Morate biti ulogovani!");
-    window.location = "login.html";
+if (window.location.pathname.endsWith("kursevi2.html")) {
+  const loggedUser = localStorage.getItem("loggedUser");
+  if (!loggedUser) {
+    alert("Morate biti ulogovani da biste pristupili ovoj stranici!");
+    window.location.href = "login.html";
   }
 }
