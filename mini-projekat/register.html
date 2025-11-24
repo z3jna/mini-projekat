@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduPlus — Login</title>
+  <title>EduPlus — Registracija</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
     <h1 class="logo">EduPlus</h1>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="login.html" class="active">Login</a></li>
-      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="register.html" class="active">Register</a></li>
       <li><a href="kursevi2.html">Kursevi</a></li>
       <li><a href="contact.html">Kontakt</a></li>
     </ul>
@@ -23,19 +23,19 @@
 
 <main class="container">
   <section class="hero">
-    <h2>Prijava</h2>
+    <h2>Kreirajte nalog</h2>
 
-    <form id="loginForm" class="login-form">
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
+    <form id="registerForm" class="login-form">
+      <label>Email:</label>
+      <input type="email" id="regEmail" required>
 
-      <label for="password">Lozinka:</label>
-      <input type="password" id="password" required>
+      <label>Lozinka:</label>
+      <input type="password" id="regPassword" required>
 
-      <button type="submit" class="btn">Uloguj se</button>
+      <button type="submit" class="btn">Registruj se</button>
     </form>
 
-    <p id="loginMessage" class="message"></p>
+    <p id="registerMessage" class="message"></p>
   </section>
 </main>
 
